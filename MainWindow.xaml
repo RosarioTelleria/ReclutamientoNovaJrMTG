@@ -1,0 +1,26 @@
+﻿<Window x:Class="ReclutamientoNovaJrMTG.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReclutamientoNovaJrMTG"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="451" Width="1029">
+    <Grid Margin="0,0,0,-6">
+        <Image x:Name="Logo" HorizontalAlignment="Left" Height="74" Margin="791,7,0,0" VerticalAlignment="Top" Width="228" Source="/logo.png"/>
+        <Button x:Name="Productos" Content="Productos" HorizontalAlignment="Left" Margin="261,13,0,0" VerticalAlignment="Top" Height="58" Width="117" Click="Productos_Click"/>
+        <Button Content="Sucursales" HorizontalAlignment="Left" Margin="400,13,0,0" VerticalAlignment="Top" Height="58" Width="123" RenderTransformOrigin="-0.308,0.483" Click="Button_Click"/>
+        <Button Content="Salir" HorizontalAlignment="Left" Margin="131,15,0,0" VerticalAlignment="Top" Height="55" Width="114" RenderTransformOrigin="-0.257,-1.053" Click="Button_Click_1">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.377"/>
+                    <TranslateTransform X="0.358" Y="-0.301"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Label x:Name="buscar" Content="" HorizontalAlignment="Center" Margin="0,384,0,0" VerticalAlignment="Top" Width="118"/>
+
+    </Grid>
+</Window>
