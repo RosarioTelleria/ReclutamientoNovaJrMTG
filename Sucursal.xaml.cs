@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using ReclutamientoNovaJrMTG.Models;
 using System;
 using System.Collections.Generic;
@@ -41,24 +42,38 @@ namespace ReclutamientoNovaJrMTG
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
             string nombre = txtNombreSucursal.Text;
             string telefono = txtTelefono.Text;
             string email = txtEmail.Text;
             string sucursalmatris = txtSucursalMatriz.Text;
             string creadopor = txtCreadoPor.Text;
 
+            using (var conn = new SqlConnection("Server=localhost;Database=MTGDB;Trusted_Connection=True;TrustServerCertificate=True;"))
+            {
+                var cmd = new SqlCommand("insert into Sucursales values (@SucursalID, @NombreComercial, @Telefono, @Email, @SucursalMatriz, @CreadoPor, @FechaAlta, @FechaModificacion)", conn);
+                cmd.Parameters.AddWithValue("@SucursalID", "DEV");
+                cmd.Parameters.AddWithValue("@NombreComercial", nombre);
+                cmd.Parameters.AddWithValue("@Telefono", telefono);
+                cmd.Parameters.AddWithValue("@Email", email);
+                cmd.Parameters.AddWithValue("@SucursalMatriz", sucursalmatris);
+                cmd.Parameters.AddWithValue("@CreadoPor", creadopor);
+                cmd.Parameters.AddWithValue("@FechaAlta", DateTime.Now);
+                cmd.Parameters.AddWithValue("@FechaModificacion", DateTime.Now);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+            }
+            
 
-            Sucursales sucursales = new Sucursales();
-            sucursales.SucursalId = "1DEV";
-            sucursales.NombreComercial = nombre;
-            sucursales.Telefono = telefono;
-            sucursales.Email = email;
-            sucursales.SucursalMatriz = sucursalmatris;
-            sucursales.CreadoPor = creadopor;
-            sucursales.FechaAlta = DateTime.Now;
-            sucursales.FechaModificacion = DateTime.Now;
-            _context.SaveChanges();
+            //Sucursales sucursales = new Sucursales();
+            //sucursales.SucursalId = "1DEV";
+            //sucursales.NombreComercial = nombre;
+            //sucursales.Telefono = telefono;
+            //sucursales.Email = email;
+            //sucursales.SucursalMatriz = sucursalmatris;
+            //sucursales.CreadoPor = creadopor;
+            //sucursales.FechaAlta = DateTime.Now;
+            //sucursales.FechaModificacion = DateTime.Now;
+            //_context.SaveChanges();
 
         }
     }
