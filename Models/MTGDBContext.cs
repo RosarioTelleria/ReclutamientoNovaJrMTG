@@ -21,6 +21,11 @@ namespace ReclutamientoNovaJrMTG.Models
         public virtual DbSet<Productos> Productos { get; set; }
         public virtual DbSet<Sucursales> Sucursales { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=localhost;Database=MTGDB;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Productos>(entity =>
